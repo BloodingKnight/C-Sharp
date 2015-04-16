@@ -1,0 +1,23 @@
+﻿<Window x:Class="PrimitiveDataTypes.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="344" Width="525">
+    <Grid>
+        <TextBlock HorizontalAlignment="Center" Margin="0,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="30" FontWeight="Bold">Primitive Data Types</TextBlock>
+
+        <TextBlock FontSize="20" Margin="10,67,308,223">Choose a data type</TextBlock>
+        <TextBlock FontSize="20" Margin="270,67,48,223">Sample value</TextBlock>
+        <ListBox x:Name="type" Margin="57,102,371,67" SelectionChanged="type_SelectionChanged">
+            <ListBoxItem>int</ListBoxItem>
+            <ListBoxItem>long</ListBoxItem>
+            <ListBoxItem>float</ListBoxItem>
+            <ListBoxItem>double</ListBoxItem>
+            <ListBoxItem>decimal</ListBoxItem>
+            <ListBoxItem>string</ListBoxItem>
+            <ListBoxItem>float</ListBoxItem>
+            <ListBoxItem>bool</ListBoxItem>
+        </ListBox>
+        <TextBox x:Name="value" HorizontalAlignment="Left" FontSize="20" Margin="270,102,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="145"/>
+        <Button Content="Quit" FontSize="20" HorizontalAlignment="Left" Margin="300,215,0,0" VerticalAlignment="Top" Width="75"/>
+    </Grid>
+</Window>
