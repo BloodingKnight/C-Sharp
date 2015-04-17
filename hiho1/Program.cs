@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 ///<summary>
 ///最长回文字串
@@ -17,15 +13,31 @@ namespace hiho1
             int[] results = new int[length];
             while (length-- > 0)
             {
-                int len = 0;
+                int len = 1;
                 string line = Console.ReadLine();
-                char[] array = line.ToCharArray();
-                for (int i = 0; i < array.Length; i++)
+                int strLen = line.Length;
+                int[,] visited = new int[strLen, strLen];
+                for (int i = 0; i < strLen; i++)
                 {
-                    for (int j = 0; j < array.Length; j++)
+                    for (int j = i + 1; j < strLen; j++)
                     {
-
-                        len = isPalindrome(array, i, j) ? (j - i + 1 > len ? j - i + 1 : len) : len;
+                        bool flag = isPalindrome(line, i, j, visited);
+                        if (flag)
+                        {
+                            int tmp = j - i + 1;
+                            len = len > tmp ? len : tmp;
+                            visited[i, j] = 1;
+                        }
+                        else
+                        {
+                            int tmpI = i, tmpJ = j;
+                            while (tmpI >= 0 && tmpJ < length)
+                            {
+                                visited[tmpI, tmpJ] = -1;
+                                --tmpI;
+                                ++tmpJ;
+                            }
+                        }
                     }
                 }
 
@@ -38,21 +50,30 @@ namespace hiho1
             }
         }
 
-        private static bool isPalindrome(char[] array, int i, int j)
+        private static bool isPalindrome(string line, int i, int j, int[, ] visited)
         {
-            while (i < j)
+            switch (visited[i, j])
             {
-                if (array[i] == array[j])
-                {
-                    ++i;
-                    --j;
-                }
-                else
-                {
+                case 1:
+                    return true;
+                case -1:
                     return false;
-                }
+                default:
+                    while (i < j)
+                    {
+                        if (line[i] == line[j])
+                        {
+                            ++i;
+                            --j;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                    return true;
             }
-            return true;
+            
         }
     }
 }
